@@ -105,8 +105,10 @@
    wget
    firefox-devedition-bin
   ## development
+  # neovim-unwrapped
    neovim
-   vimPlugins.packer-nvim
+  # vimPlugins.packer-nvim
+  # luajit
    git
    kitty
    stow
@@ -153,6 +155,7 @@
       shellAliases = {
         ll = "ls -l";
         update = "sudo nixos-rebuild switch";
+        vimconfig = "sudo vim ~/.nixdots/configuration.nix";
       };
       history = {
         size = 10000;
@@ -172,11 +175,6 @@
       };
     };
   };
-
-
-
-
-
 
 
 
