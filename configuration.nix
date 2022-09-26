@@ -44,17 +44,15 @@
     LC_TIME = "de_DE.utf8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
   services.xserver = {
+    # Enable the X11 windowing system.
+    enable = true;
+    # Configure keymap in X11
     layout = "us";
     xkbVariant = "";
+    # Enable the GNOME Desktop Environment.
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
   };
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
@@ -146,7 +144,7 @@
   system.stateVersion = "22.05"; # Did you read the comment?
 
   home-manager.users.christian = { pkgs, ...}: {
-    home.packages = with pkgs;[ htop tmux starship ];
+    home.packages = with pkgs;[ htop tmux ];
     programs.zsh = {
       enable = true;
       shellAliases = {
