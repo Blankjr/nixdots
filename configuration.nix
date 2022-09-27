@@ -44,16 +44,23 @@
     LC_TIME = "de_DE.utf8";
   };
 
+  console.useXkbConfig = true;
   services.xserver = {
     # Enable the X11 windowing system.
     enable = true;
     # Configure keymap in X11
     layout = "us";
     xkbVariant = "";
+    xkbOptions = "caps:escape";
     # Enable the GNOME Desktop Environment.
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
+    #defaultSession = "none+awesome";
+    windowManager.awesome = {
+    enable = true;
   };
+  };
+
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
@@ -99,21 +106,28 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-   wget
-   firefox-devedition-bin
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    firefox-devedition-bin
   ## development
-   neovim
-   git
-   kitty
-   stow
-   gh
+    neovim
+    git
+    kitty
+    stow
+    gh
   ## system utilities
-   keepassxc
-   btop
-   unzip
-   speedcrunch
-
+    keepassxc
+    btop
+    unzip
+    speedcrunch
+  ## awesome wm
+    picom
+    copyq
+    networkmanagerapplet
+    i3lock-color
+    rofi
+    lxappearance
+  
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
