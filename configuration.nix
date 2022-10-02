@@ -10,11 +10,32 @@
       ./hardware-configuration.nix
       <home-manager/nixos>
     ];
-
+  
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
+
+  # enable flakes & add binary Caches for AwesomeWM Git etc. 
+  nix = {
+		autoOptimiseStore = true;
+		package = pkgs.nixFlakes; #enables flakes
+		extraOptions = ''
+   			experimental-features = nix-command flakes 
+		'';
+		settings = { #cachix 👍
+			substituters = [
+				"https://cache.nixos.org?priority=10"
+				"https://fortuneteller2k.cachix.org"
+			];
+			trusted-public-keys = [
+				"cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+				"fortuneteller2k.cachix.org-1:kXXNkMV5yheEQwT0I4XYh1MaCSz+qg72k8XAi2PthJI="
+				"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+			];
+		};
+	};
+
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -56,9 +77,9 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
     #defaultSession = "none+awesome";
-    windowManager.awesome = {
-    enable = true;
-  };
+    #windowManager.awesome = {
+    #enable = true;
+    #};
   };
 
   fonts.fonts = with pkgs; [
@@ -211,7 +232,5 @@
       };
     };
   };
-
-
 
 }
