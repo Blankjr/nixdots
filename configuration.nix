@@ -115,11 +115,17 @@
     kitty
     stow
     gh
+    lazygit
+    zoxide
+    fzf
   ## system utilities
     keepassxc
     btop
     unzip
     speedcrunch
+    tealdeer
+    exa
+    bat
   ## awesome wm
     picom
     copyq
@@ -127,7 +133,15 @@
     i3lock-color
     rofi
     lxappearance
-  
+  ## neovim dependencies
+    nodePackages.pyright
+    nodePackages.typescript-language-server
+    stylua
+    nodePackages.prettier_d_slim
+    nodePackages.prettier
+  ## LF File Manager
+    lf
+    trash-cli
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -165,6 +179,19 @@
         ll = "ls -l";
         update = "sudo nixos-rebuild switch";
         nvimconfig = "sudo -E -s nvim ~/.nixdots/configuration.nix";
+        gg = "lazygit";
+        cd1 = "cd ..";
+        cd2 = "cd ../../";
+        cd3 = "cd ../../..";
+        cd4 = "cd ../../../..";
+        cd5 = "cd ../../../../..";
+        c = "clear";
+        # zoxide
+        #cd="z";
+        #zz= "z -";
+        # tealdeer
+        fman = "tldr";
+
       };
       history = {
         size = 10000;
