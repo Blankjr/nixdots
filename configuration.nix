@@ -149,7 +149,6 @@
     zoxide
     fzf
   ## system utilities
-    keepassxc
     btop
     unzip
     speedcrunch
@@ -158,13 +157,14 @@
     bat
     du-dust
     duf
+    xarchiver
   ## awesome wm
-    picom
     copyq
-    networkmanagerapplet
-    i3lock-color
-    rofi
-    lxappearance
+    brightnessctl
+    playerctl
+    pamixer
+    pcmanfm
+
   ## neovim dependencies
     nodePackages.pyright
     nodePackages.typescript-language-server
@@ -178,6 +178,11 @@
     mpv
     nsxiv
     zathura
+    glow
+    thunderbird-bin
+    keepassxc
+  ## University
+    teams
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
