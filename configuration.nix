@@ -156,6 +156,8 @@
     tealdeer
     exa
     bat
+    du-dust
+    duf
   ## awesome wm
     picom
     copyq
@@ -172,6 +174,10 @@
   ## LF File Manager
     lf
     trash-cli
+  ## Daily use
+    mpv
+    nsxiv
+    zathura
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -221,6 +227,9 @@
         #zz= "z -";
         # tealdeer
         fman = "tldr";
+        # utilities
+        du="dust";
+        df="duf"; 
 
       };
       history = {
