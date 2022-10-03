@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       <home-manager/nixos>
       ./video
+      ./systempackages.nix
     ];
   
   # Bootloader.
