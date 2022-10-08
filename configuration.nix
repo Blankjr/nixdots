@@ -11,6 +11,7 @@
       <home-manager/nixos>
       ./video
       ./systempackages.nix
+      ./ownPkgs
     ];
   
   # Bootloader.
@@ -75,14 +76,23 @@
     layout = "us";
     xkbVariant = "";
     xkbOptions = "caps:escape";
+
     # Enable the GNOME Desktop Environment.
-    displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
+    displayManager = {
+    #gdm.enable = true;
+    sddm = {
+      enable = true;
+      theme = "sugar-dark";
+    };
+    defaultSession = "none+awesome";
+    };
     #defaultSession = "none+awesome";
     #windowManager.awesome = {
     #enable = true;
     #};
   };
+  environment.shells = with pkgs; [ zsh ];
 
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
@@ -122,6 +132,7 @@
     #  thunderbird
     ];
   };
+  users.defaultUserShell = pkgs.zsh;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -169,6 +180,7 @@
   ## neovim dependencies
     nodePackages.pyright
     nodePackages.typescript-language-server
+    nodePackages.tailwindcss
     stylua
     nodePackages.prettier_d_slim
     nodePackages.prettier
@@ -184,6 +196,8 @@
     keepassxc
   ## University
     teams
+  ## themes
+  #libsForQt5.qt5.qtgraphicaleffects
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -214,14 +228,38 @@
   system.stateVersion = "22.05"; # Did you read the comment?
 
   home-manager.users.christian = { pkgs, ...}: {
+       # xresources.extraConfig = import ./video/theming/xresources.nix { inherit theme; };
+      gtk = {
+              enable = true;
+              font = {
+                      name = "Lato";
+                      size = 12;
+              };
+              iconTheme = {
+                      name = "Papirus-Dark";
+                      package = pkgs.papirus-icon-theme;
+              };
+              cursorTheme = {
+                      name = "Phinger Cursors (light)";
+                      package = pkgs.phinger-cursors;
+                      size = 24;
+              };
+              theme = {
+                      name = "Materia-dark";
+                      package = pkgs.materia-theme;
+              };
+            };
+
     home.packages = with pkgs;[ htop tmux ];
     programs.zsh = {
       enable = true;
       shellAliases = {
         ll = "ls -l";
+        la = "ls -A";
         update = "sudo nixos-rebuild switch";
         nvimconfig = "sudo -E -s nvim ~/.nixdots/configuration.nix";
         gg = "lazygit";
+        v = "nvim";
         cd1 = "cd ..";
         cd2 = "cd ../../";
         cd3 = "cd ../../..";
@@ -236,7 +274,7 @@
         # utilities
         du="dust";
         df="duf"; 
-
+        
       };
       history = {
         size = 10000;
@@ -255,6 +293,10 @@
         add_newline = false;
       };
     };
+    # gtk.iconTheme.package = pkgs.papirus-icon-theme;
+    # gtk.iconTheme.name = "Papirus-Dark";
+    # gtk.theme.package = pkgs.materia-theme;
+    # gtk.theme.name = "Materia-dark-compact";
   };
 
 }

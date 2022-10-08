@@ -1,0 +1,10 @@
+diff --git a/theme.conf b/theme.conf
+index f39fb68..8f3256d 100644
+--- a/theme.conf
++++ b/theme.conf
+@@ -1,6 +1,6 @@
+ 
+ 
+-ForceHideCompletePassword="false"
++ForceHideCompletePassword="true"
+ ## If you don't like to see any character at all not even while being entered set this to true.

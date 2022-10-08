@@ -3,7 +3,7 @@
 	imports = [
 		./x.nix
 #		./wayland.nix
-#		./theming
+		./theming
 	];
 }
 
