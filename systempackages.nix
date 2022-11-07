@@ -6,9 +6,17 @@ let
     		pandas
                 requests
                 python-lsp-server
-
+                jupyter
+                ipython
+                ipykernel
+                nltk
+                spacy
+                scikit-learn
+                numpy
+                pytorchWithoutCuda
     	];
 	python-with-my-packages = python39.withPackages my-python-packages;
+        unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in
 {
 	nixpkgs.config.allowUnfree = true;
@@ -21,7 +29,16 @@ in
 	environment.systemPackages = with pkgs; [
 	## developement
 		python-with-my-packages
-
+        ## daily use
+                unstable.discord
+                flameshot
+        ## eduroam
+        #openssl
+        #cacert
+        ## entertainment
+        ani-cli
+        ## jupyter notebooks
+        vscodium-fhs
 	];
 
 
