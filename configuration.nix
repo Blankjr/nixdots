@@ -184,6 +184,8 @@
     stylua
     nodePackages.prettier_d_slim
     nodePackages.prettier
+  ## tutorials
+    nodePackages.live-server
   ## LF File Manager
     lf
     trash-cli
@@ -228,7 +230,7 @@
   system.stateVersion = "22.05"; # Did you read the comment?
 
   home-manager.users.christian = { pkgs, ...}: {
-       # xresources.extraConfig = import ./video/theming/xresources.nix { inherit theme; };
+      #xresources.extraConfig = import ./video/theming/xresources.nix { inherit theme; };
       gtk = {
               enable = true;
               font = {
@@ -273,7 +275,12 @@
         fman = "tldr";
         # utilities
         du="dust";
-        df="duf"; 
+        df="duf";
+        # media
+        # i="nsxiv $1 /dev/null &> /dev/null &; disown";
+        # p="zathura $1 < /dev/null &> /dev/null &; disown";
+        i="nsxiv";
+        p="zathura";
         
       };
       history = {
