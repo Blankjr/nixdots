@@ -14,8 +14,14 @@ let
                 scikit-learn
                 numpy
                 pytorchWithoutCuda
+                gensim
+                tqdm
     	];
 	python-with-my-packages = python39.withPackages my-python-packages;
+ #  	rasa-python-packages = python-packages: with python-packages; [
+ #                rasa
+ #    	];
+	# python-with-rasa = python38.withPackages rasa-python-packages;
         unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in
 {
@@ -29,6 +35,11 @@ in
 	environment.systemPackages = with pkgs; [
 	## developement
 		python-with-my-packages
+		# python-with-rasa
+                micromamba
+                unstable.insomnia
+                ## java
+                # jdk11
         ## daily use
                 unstable.discord
                 flameshot
@@ -36,7 +47,9 @@ in
         #openssl
         #cacert
         ## entertainment
-        ani-cli
+        unstable.ani-cli
+        unstable.ffmpeg
+        unstable.axel
         ## jupyter notebooks
         vscodium-fhs
 	];
